@@ -1,14 +1,16 @@
 #!/bin/bash
 
-## Returns a list of the installed dotnet runtime versions.
-## Set the Return Type to List
+## Returns a list of installed .NET runtime versions.
+## Returns "n/a" via 'exit 117' if 
+## Set the Custom Fact "Return Type" to "List".
 
-binary_location=`cat /etc/dotnet/install_location`
+install_location_file="/etc/dotnet/install_location"
 
-if [ -f "$binary_location/dotnet" ]; then
+ if [ -f "$install_location_file" ]; then
+ 	binary_location=`cat "$install_location_file"`
 	"$binary_location/dotnet" --list-runtimes | awk {'print $2'}
-else
-	exit 117
+ else
+ 	exit 117
 fi
 
 exit 0
