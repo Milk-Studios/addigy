@@ -4,13 +4,13 @@
 ## Returns "n/a" via 'exit 117' if .NET isn't installed.
 ## Set the Custom Fact "Return Type" to "List".
 
-install_location_file="/etc/dotnet/install_location"
+base_install_dir="/usr/local/share/dotnet"
+dotnet_binary=$(find "$base_install_dir" -type f -name dotnet)
 
- if [ -f "$install_location_file" ]; then
- 	binary_location=`cat "$install_location_file"`
-	"$binary_location/dotnet" --list-runtimes | awk {'print $2'}
- else
- 	exit 117
+if [ -z "$dotnet_binary" ]; then
+	exit 117
+else
+	"$dotnet_binary" --list-runtimes | awk {'print $2'}
 fi
 
 exit 0
