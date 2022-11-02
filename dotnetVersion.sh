@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## Returns a list of installed .NET runtime versions.
-## Returns "n/a" via 'exit 117' if 
+## Returns "n/a" via 'exit 117' if .NET isn't installed.
 ## Set the Custom Fact "Return Type" to "List".
 
 install_location_file="/etc/dotnet/install_location"
